@@ -1,11 +1,11 @@
 # S3 AWS CLI Commands
-## s3 make bucket (create bucket)
+## *mb* - make bucket (create bucket)
 ```
 aws s3 mb s3://mys3bucket --region <aws-region>
 aws s3 mb s3://mys3bucket --region us-west-2
 ```
 
-## S3 Create bucket using api
+## *s3api* - Create bucket using api
 ```
 aws s3api create-bucket --bucket mys3bucket --region <aws-region> --create-bucket-configuration LocationConstraint=<aws-region>
 ```
@@ -18,38 +18,63 @@ aws s3api create-bucket --bucket simples3staticwebsite.com --region ap-south-1 -
 		"Location": "http://simples3staticwebsite.com.s3.amazonaws.com/"
 	}
 ```
-## s3 remove bucket
+## *rb* - Remove/Delete bucket
 ```
 aws s3 rb s3://mys3bucket
 aws s3 rb s3://mys3bucket --force
 ```
 
-## s3 ls commands
+## *ls* - List S3 objects
+### Lists all of the bucket owned by the user
 ```
 aws s3 ls
-aws s3 ls s3://mys3bucket
-aws s3 ls s3://mys3bucket --recursive
-aws s3 ls s3://mys3bucket --recursive  --human-readable --summarize
 ```
-### Sample Output
+#### Sample Output
 ```
 	C:\Windows\system32>aws s3 ls
 	2020-04-13 15:29:14 simples3staticwebsite.com
 	2020-04-12 16:11:17 www.simples3staticwebsite.com
 	2020-04-11 22:33:45 www.venkiwebsite.com
 ```
+### Lists objects under a specified bucket
+```
+aws s3 ls s3://mys3bucket
+```
 
-## s3 cp commands
+### Recursively list objects in a bucket, or list in human readable and summarize option
+```
+aws s3 ls s3://mys3bucket --recursive
+aws s3 ls s3://mys3bucket --recursive  --human-readable --summarize
+```
+
+
+## *cp* Copy files
+### Copying a local file "getdata.php" to S3 Bucket "mys3bucket"
 ```
 aws s3 cp getdata.php s3://mys3bucket
-aws s3 cp /local/dir/data s3://mys3bucket --recursive
+```
+### Copying a file "getdata.php" from S3 Bucket to local path "/local/dir/data"
+```
 aws s3 cp s3://mys3bucket/getdata.php /local/dir/data
+```
+### Copying a folder "/local/dir/data" recursively to S3 Bucket "mys3bucket"
+```
+aws s3 cp /local/dir/data s3://mys3bucket --recursive
+```
+### Copying S3 Bucket "mys3bucket" to local folder "/local/dir/data" recursively
+```
 aws s3 cp s3://mys3bucket/ /local/dir/data --recursive
+```
+### Copying a file from one S3 bucket to another S3 bucket
+```
 aws s3 cp s3://mys3bucket/init.xml s3://mybackups3bucket
+```
+### Copying a entire bucket contents from one S3 bucket to another S3 bucket
+```
 aws s3 cp s3://mys3bucket s3://mybackups3bucket --recursive
 ```
 
-## s3 mv commands
+## *mv* - Move Files commands
 ```
 aws s3 mv source.json s3://mys3bucket
 aws s3 mv s3://mys3bucket/getdata.php /home/project
@@ -58,13 +83,13 @@ aws s3 mv /local/dir/data s3://mys3bucket/data --recursive
 aws s3 mv s3://mys3bucket s3://mybackups3bucket --recursive
 ```
 
-## s3 rm commands
+## *rm* - Remove files 
 ```
 aws s3 rm s3://mys3bucket/queries.txt
 aws s3 rm s3://mys3bucket --recursive
 ```
 
-## s3 sync commands
+## *sync* - Sync files
 ```
 aws s3 sync backup s3://mys3bucket
 aws s3 sync s3://mys3bucket/backup /tmp/backup
