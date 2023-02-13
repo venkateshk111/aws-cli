@@ -56,3 +56,4 @@ More Details : [AWS CLI Installation Instructions](https://docs.aws.amazon.com/c
 * [AWS CLI Getting Started](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 * [AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference)
 * [AWS CLI GitHub Project](https://github.com/aws/aws-cli)
+* [AWS CLI Return Codes](https://docs.aws.amazon.com/cli/latest/topic/return-codes.html)
